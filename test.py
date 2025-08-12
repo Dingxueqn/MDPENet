@@ -54,8 +54,8 @@ def compute_miou(seg_preds, seg_gts, num_classes):
 if __name__ == '__main__':
     from PIL import Image
     import os
-    label_path = "output/clinic-DB/gt"  # 标签的文件夹位置
-    predict_path = "output/clinic-DB/pred"  # 预测结果的文件夹位置
+    label_path = "output/clinic-DB/gt"  
+    predict_path = "output/clinic-DB/pred"  
     res_miou = []
     for pred_im in os.listdir(predict_path):
         label = keep_image_size_open_label(os.path.join(label_path, pred_im))
