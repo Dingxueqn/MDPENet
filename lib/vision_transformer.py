@@ -154,7 +154,7 @@ if __name__ == "__main__":
         buffer_size += buffer.nelement() * buffer.element_size()
         buffer_sum += buffer.nelement()
     all_size = (param_size + buffer_size) / 1024 / 1024
-    print(' {:.3f}MB'.format(all_size))
+    print('{:.3f}MB'.format(all_size))
 
 
  
