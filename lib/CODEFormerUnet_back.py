@@ -388,7 +388,7 @@ class TransformerBlock(nn.Module):
         x = x + self.da(x_)
         return x
 
-# Muti_scale_Feature_Restore 多尺度特征恢复
+
 class MSFR(nn.Module):
     def __init__(self, in_size, out_size, is_batchnorm, n=2, ks=3, stride=1, padding=1):
         super(MSFR, self).__init__()
@@ -540,10 +540,9 @@ class CODEFormer(nn.Module):
 
             x_ = x_ + x_temp_enc
             # [1, 64, 224, 224]
-            # 加入注意力
             B, C, H, W = x_.shape
             #print(C)
-            # cbam = CBAM(C).cuda()  # 8是输入通道
+            # cbam = CBAM(C).cuda()  
             # x_ = cbam(x_)
 
             x_ms.append(x_)
@@ -564,11 +563,10 @@ class CODEFormer(nn.Module):
 
             x_t = layer(x_ + x_e)
             x_t = x_t + x_temp_dec
-            # 加入注意力
             B, C, H, W = x_t.shape
 
             #print()
-            # cbam = CBAM(C).cuda()  # 8是输入通道
+            # cbam = CBAM(C).cuda()  
             # x_t = cbam(x_t)
             x_ = sampler(x_t)
 
@@ -576,7 +574,7 @@ class CODEFormer(nn.Module):
         x_ = x_ + x_emb
 
         B, C, H, W = x_.shape
-        # cbam = CBAM(C).cuda()  # 8是输入通道
+        # cbam = CBAM(C).cuda()  
         # x_ = cbam(x_)
 
         # Refinement
