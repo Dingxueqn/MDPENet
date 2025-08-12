@@ -661,7 +661,7 @@ class BasicLayer_up(nn.Module):
 
         B, HW, C = x.shape
         # x = x.view(B, C, int(math.sqrt(HW)), int(math.sqrt(HW)))
-        # cbam = CBAM(C).cuda() # 8是输入通道
+        # cbam = CBAM(C).cuda() 
         # x = cbam(x)
         # x = x.view(B, HW, C)  # B,C,H,W
 
@@ -738,7 +738,6 @@ class BasicLayer(nn.Module):
                 # torch.Size([4, 49, 768])
                 # print(int(math.sqrt(HW)), int(math.sqrt(HW)))
 
-                # 里面参数有问题
                 x, mask = blk(x, int(math.sqrt(HW)), int(math.sqrt(HW)), mask)
                 print(x.shape)
                 #x = x.view(B, HW, C)
@@ -997,7 +996,6 @@ class SgFormerSys(nn.Module):
 
         if self.final_upsample == "expand_first":
             x = self.up(x)
-            # 这里改变将patch合并成一张图
             x = x.view(B, 4 * H, 4 * W, -1)
             x = x.permute(0, 3, 1, 2)  # B,C,H,W
             x = self.output(x)
